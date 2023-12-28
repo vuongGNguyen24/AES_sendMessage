@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, SignInForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from chat.models import UserProfile
 from chat.views import *
-
 
 def SignUp(request):
     """
@@ -54,4 +53,11 @@ def Login(request):
         form = SignInForm()
     return render(request, 'registration/login.html', {'form': form})
 
+def logout_view(request):
+    logout(request)
+    # Redirect to a specific page after logout (e.g., home page)
+    return redirect("login")
 
+def some_view(request):
+    # Your view logic
+    return render(request, 'logout.html')
